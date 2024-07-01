@@ -66,13 +66,13 @@ git checkout main
     base가 기존의 코드, compare가 자신이 새롭게 작업한 브랜치입니다.  
     
     base: week{n} 브랜치 선택  
-    compare: 직접 생성한 week{n}/백준아이디 브랜치 선택
-    -혹여나 base에 해당하는 주차의 브랜치가 없다면 제가 까먹은거니 편하게 연락주세요.-  
+    compare: 직접 생성한 week{n}/백준아이디 브랜치 선택  
+    ~~혹여나 base에 해당하는 주차의 브랜치가 없다면 제가 까먹은거니 편하게 연락주세요.~~  
 
     Create pull request 클릭  
     pr명은 commit 메세지와 동일하게 "아이디 n주차 과제 제출"  
     우측에 Reviewers는 저(areian13), Assignees는 본인 선택  
-    pr 제출
+    pr 제출  
 
 
 4. pr이 제출된 이후엔, 제가 피드백을 드립니다.  
