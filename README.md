@@ -74,6 +74,8 @@ git checkout main
     우측에 Reviewers는 저(areian13), Assignees는 본인 선택  
     pr 제출  
 
+    **절대로 무슨 일이 있어도 본인이 올린 pr을 본인이 직접 merge해서는 안됩니다**
+
 
 4. pr이 제출된 이후엔, 제가 피드백을 드립니다.  
 피드백 이후엔 제가 어느정도 만족할 때까지 수정을 요구할 수도 있고, 이 정도면 됐다 싶으면 pr을 수락하여 week1 브랜치로 merge할 것입니다.
