@@ -66,12 +66,12 @@ git checkout main
 
 4. 깃허브 제출
 
-    1. 깃허브의 week{n} 브런치에서 week{n}/백준아이디 브랜치를 새로 파줍니다.  
+    1. 깃허브의 week{n} 브런치에서 week{n}-백준아이디 브랜치를 새로 파줍니다.  
     ~~혹여나 week{n} 브랜치가 없다면 제가 까먹은거니 편하게 연락주세요.~~  
-    ex) week1/areian13  
+    ex) week1-areian13  
 
     2. 자신의 레포지토리 터미널에서 
-    git checkout week{n}/백준아이디 (week1/areian13)  
+    git checkout week{n}-백준아이디 (week1-areian13)  
     git status -> **위 브랜치로 이동되었는지 반드시 확인**  
     git add .  
     git commit -m "아이디 n주차 과제 제출" (areian13 1주차 과제 제출)  
@@ -83,7 +83,7 @@ git checkout main
     base가 기존의 코드, compare가 자신이 새롭게 작업한 브랜치입니다.  
     
     base: week{n} 브랜치 선택  
-    compare: 직접 생성한 week{n}/백준아이디 브랜치 선택  
+    compare: 직접 생성한 week{n}-백준아이디 브랜치 선택  
     
     **브랜치 제대로 선택했는지 반드시 확인해주세요**  
 
