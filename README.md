@@ -62,7 +62,7 @@ git checkout main
 
     2. 자신의 레포지토리 터미널에서 
     git checkout week{n}/백준아이디 (week1/areian13)  
-    git status -> **위 브랜치로 이동되었는지 반드시 확인**
+    git status -> **위 브랜치로 이동되었는지 반드시 확인**  
     git add .  
     git commit -m "아이디 n주차 과제 제출" (areian13 1주차 과제 제출)  
     git push  
