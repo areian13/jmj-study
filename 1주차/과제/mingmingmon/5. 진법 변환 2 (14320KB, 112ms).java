@@ -19,16 +19,15 @@ public class Main {
     static String DecimalToBase(int n, int b) {
         StringBuilder sb = new StringBuilder();
 
-        while(n != 0) {
+        do {
             int mod = n % b;
             if (mod >= 10){
-                sb.append((char)(n % b - 10 + 'A'));
+                sb.append((char)(mod - 10 + 'A'));
             } else {
-                sb.append(n % b);
+                sb.append(mod);
             }
-
             n /= b;
-        }
+        } while(n != 0);
 
         String result = reverse(sb.toString());
 

@@ -37,16 +37,16 @@ public class Main {
     static String decimalToBase(int number, int toBase) {
         StringBuilder sb = new StringBuilder();
 
-        while(number != 0) {
+        do {
             int mod = number % toBase;
             if (mod >= 10){
-                sb.append((char)(number % toBase - 10 + 'A'));
+                sb.append((char)(mod - 10 + 'A'));
             } else {
-                sb.append(number % toBase);
+                sb.append(mod);
             }
 
             number /= toBase;
-        }
+        } while(number != 0);
 
         String result = reverse(sb.toString());
 
