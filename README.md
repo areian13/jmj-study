@@ -66,8 +66,9 @@ git checkout main
 
 4. 깃허브 제출
 
-    1. 깃허브의 main 브런치에서 week{n}/백준아이디 브랜치를 새로 파줍니다.  
-    ex) week1/areian13
+    1. 깃허브의 week{n} 브런치에서 week{n}/백준아이디 브랜치를 새로 파줍니다.  
+    ~~혹여나 week{n} 브랜치가 없다면 제가 까먹은거니 편하게 연락주세요.~~  
+    ex) week1/areian13  
 
     2. 자신의 레포지토리 터미널에서 
     git checkout week{n}/백준아이디 (week1/areian13)  
@@ -83,7 +84,7 @@ git checkout main
     
     base: week{n} 브랜치 선택  
     compare: 직접 생성한 week{n}/백준아이디 브랜치 선택  
-    ~~혹여나 base에 해당하는 주차의 브랜치가 없다면 제가 까먹은거니 편하게 연락주세요.~~  
+    
     **브랜치 제대로 선택했는지 반드시 확인해주세요**  
 
     Create pull request 클릭  
