@@ -16,16 +16,19 @@ public class Main {
         return sb.toString();
     }
 
+    static char itoc(int mod) {
+        if (mod >= 10)
+            return (char)(mod - 10 + 'A');
+        return (char) (mod + '0');
+    }
+
     static String DecimalToBase(int n, int b) {
         StringBuilder sb = new StringBuilder();
 
+        // n = 0일 경우 while문이면 반복문 안에 들어갈 수 없어서 sb가 null이 되어버림
         do {
             int mod = n % b;
-            if (mod >= 10){
-                sb.append((char)(mod - 10 + 'A'));
-            } else {
-                sb.append(mod);
-            }
+            sb.append(itoc(mod));
             n /= b;
         } while(n != 0);
 
