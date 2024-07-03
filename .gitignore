@@ -2,7 +2,7 @@
 *
 
 # .gitignore 파일 자체는 무시하지 않도록 예외 설정
-!.gitignore
+!/.gitignore
 
 # 모든 디렉토리를 무시하지 않도록 예외 설정
 !*/
