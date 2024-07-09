@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
-
+//G5_30105
     static List<Integer> getPossibleGap(int[] teethMark, HashMap<Integer, Boolean> hm) {
         int length = teethMark.length;
         List<Integer> result = new LinkedList<>();

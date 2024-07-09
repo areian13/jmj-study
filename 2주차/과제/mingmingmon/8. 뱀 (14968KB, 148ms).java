@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
+//G4_3190
 
     static int[] dirRow = {-1, 0, 1, 0};
     static int[] dirCol = {0, 1, 0, -1};
@@ -38,37 +39,45 @@ public class Main {
         int currCol = 0;
         int time = 0;
         int n = map.length;
-        int length = changeDirectionInfos.length;
+
         Queue<SnakePoint> q = new LinkedList<>();
         q.offer(new SnakePoint(0,0));
-        while (true) {
-            time++;
-            int nextRow = currRow + dirRow[headDirection];
-            int nextCol = currCol + dirCol[headDirection];
-            if (nextRow < 0 || nextRow >= n || nextCol < 0 || nextCol >= n) {
-                return time;
-            }
-            if (map[nextRow][nextCol] == 's'){
-                return time;
-            }
 
-            if (map[nextRow][nextCol] != 'a'){
-                SnakePoint tailPoint = q.poll();
-                map[tailPoint.row][tailPoint.col] = '0';
-            }
+        for (ChangeDirectionInfo changeDirectionInfo : changeDirectionInfos) {
+            int changingTime = changeDirectionInfo.time;
+            char changingDirection = changeDirectionInfo.dir;
+            //System.out.printf("changingTime : %d, changingDirection : %c\n", changingTime, changingDirection);
+            for (int i = time; i < changingTime; i++) {
+                time++;
 
-            map[nextRow][nextCol] = 's';
-            q.offer(new SnakePoint(nextRow, nextCol));
+                int nextRow = currRow + dirRow[headDirection];
+                int nextCol = currCol + dirCol[headDirection];
 
-            for (int i = 0; i < length; i++) {
-                if (time == changeDirectionInfos[i].time) {
-                    headDirection = (headDirection + (changeDirectionInfos[i].dir == 'L' ? 3  : 1)) % 4;
+                //System.out.printf("nextRow : %d nextCol : %d time : %d\n", nextRow, nextCol, time);
+
+                if (nextRow < 0 || nextRow >= n || nextCol < 0 || nextCol >= n) {
+                    return time;
                 }
-            }
-            currRow = nextRow;
-            currCol = nextCol;
+                if (map[nextRow][nextCol] == 's'){
+                    return time;
+                }
 
+                if (map[nextRow][nextCol] != 'a'){
+                    SnakePoint tailPoint = q.poll();
+                    map[tailPoint.row][tailPoint.col] = '0';
+                }
+
+                map[nextRow][nextCol] = 's';
+                q.offer(new SnakePoint(nextRow, nextCol));
+
+                currRow = nextRow;
+                currCol = nextCol;
+            }
+            headDirection = (headDirection + (changingDirection == 'L' ? 3  : 1)) % 4;
         }
+
+        return time;
+
     }
 
     public static void main(String[] args) throws IOException {
@@ -91,13 +100,14 @@ public class Main {
         }
 
         int l = Integer.parseInt(br.readLine());
-        ChangeDirectionInfo[] changeDirectionInfos = new ChangeDirectionInfo[l];
+        ChangeDirectionInfo[] changeDirectionInfos = new ChangeDirectionInfo[l + 1];
         for (int i = 0; i < l; i++) {
             st = new StringTokenizer(br.readLine());
             int time = Integer.parseInt(st.nextToken());
             char dir = st.nextToken().charAt(0);
             changeDirectionInfos[i] = new ChangeDirectionInfo(time, dir);
         }
+        changeDirectionInfos[l] = new ChangeDirectionInfo(changeDirectionInfos[l - 1].time + n, 'N');
 
         int headDirection = 1;
         int gameOverTime = getGameOverTime(map, changeDirectionInfos, headDirection);

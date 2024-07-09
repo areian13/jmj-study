@@ -7,46 +7,18 @@ import java.util.Stack;
 // S3_1935
 public class Main {
 
-    static double transferCharacterToDouble(Character character, int[] value) {
-        return value[character - 'A'];
-    }
-
-    static void operateStack(Character curr, int[] value, Stack<Double> stack) {
+    static double calculateTwoNumber(double first, double second, char curr) {
         switch (curr) {
-            case '+': {
-                double second = stack.pop();
-                double first = stack.pop();
-                stack.push(first + second);
-                break;
-            }
-            case '-': {
-                double second = stack.pop();
-                double first = stack.pop();
-                stack.push(first - second);
-                break;
-            }
-            case '*': {
-                double second = stack.pop();
-                double first = stack.pop();
-                stack.push(first * second);
-                break;
-            }
-            case '/': {
-                double second = stack.pop();
-                double first = stack.pop();
-                stack.push(first / second);
-                break;
-            }
-            case '%': {
-                double second = stack.pop();
-                double first = stack.pop();
-                stack.push(first % second);
-                break;
-            }
-            default: {
-                stack.push(transferCharacterToDouble(curr, value));
-            }
+            case '+' :
+                return first + second;
+            case '-' :
+                return first - second;
+            case '*' :
+                return first * second;
+            case '/' :
+                return first / second;
         }
+        return -1.0;
     }
 
     static double calculatePostfix(String postfix, int[] value) {
@@ -54,7 +26,14 @@ public class Main {
         int length = postfix.length();
         for (int i = 0; i < length; i++) {
             char curr = postfix.charAt(i);
-            operateStack(curr, value, stack);
+            if ('A' <= curr && curr <= 'Z')
+                stack.push((double) value[curr - 'A']);
+            else {
+                double second = stack.pop();
+                double first = stack.pop();
+                double result = calculateTwoNumber(first, second, curr);
+                stack.push(result);
+            }
         }
         return stack.pop();
     }
