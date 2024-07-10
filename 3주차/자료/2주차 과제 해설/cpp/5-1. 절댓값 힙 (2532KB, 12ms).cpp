@@ -7,7 +7,7 @@
 using namespace std;
 
 template <typename T>
-struct Abs
+struct AbsComparator
 {
     bool operator()(const T& a, const T& b)
     {
@@ -24,7 +24,7 @@ int main()
     int n;
     cin >> n;
 
-    priority_queue<int, vector<int>, Abs<int>> absHeap;
+    priority_queue<int, vector<int>, AbsComparator<int>> absHeap;
     for (int i = 0; i < n; i++)
     {
         int x;
