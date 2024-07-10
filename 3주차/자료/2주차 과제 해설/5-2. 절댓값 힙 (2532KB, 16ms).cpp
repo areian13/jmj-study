@@ -26,20 +26,20 @@ int main()
     int n;
     cin >> n;
 
-    priority_queue<Abs> absHeap;
+    priority_queue<Abs<int>> absHeap;
     for (int i = 0; i < n; i++)
     {
         int x;
         cin >> x;
 
         if (x != 0)
-            absHeap.push(x);
+            absHeap.push({ x });
         else
         {
             if (absHeap.empty())
-                absHeap.push(0);
+                absHeap.push({ 0 });
 
-            int result = absHeap.top();
+            int result = absHeap.top().data;
             cout << result << '\n';
 
             absHeap.pop();
