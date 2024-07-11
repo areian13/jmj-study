@@ -8,8 +8,8 @@ using namespace std;
 void Print(vector<int>& arr)
 {
     for (int x : arr)
-        cout << x <<' ';
-    cout << '\n';  
+        cout << x << ' ';
+    cout << '\n';
 }
 
 void Merge(int start, int mid, int end, vector<int>& arr, bool order)
@@ -21,22 +21,22 @@ void Merge(int start, int mid, int end, vector<int>& arr, bool order)
     int r = mid + 1;
     int t = 0;
     while (l <= mid && r <= end)
-        temp[t++] = ((arr[l] <= arr[r]) && (order == 0)) ? arr[l++] : arr[r++];
-    
+        temp[t++] = (order ^ (arr[l] <= arr[r])) ? arr[l++] : arr[r++];
+
     int s = (l <= mid ? l : r);
     int e = (l <= mid ? mid : end);
     for (int i = s; i <= e; i++)
         temp[t++] = arr[i];
 
     for (int i = start; i <= end; i++)
-        arr[i] = temp[i - start];    
+        arr[i] = temp[i - start];
 }
 
 void MergeSort(int start, int end, vector<int>& arr, bool order = 0)
 {
     if (start == end)
         return;
-    
+
     int mid = (start + end) / 2;
     MergeSort(start, mid, arr, order);
     MergeSort(mid + 1, end, arr, order);
@@ -48,7 +48,7 @@ int main()
     FastIO;
 
     vector<int> arr, temp = { 2,6,4,3,7,8,1,9,5,0 };
-    
+
     arr = temp;
     MergeSort(0, arr.size() - 1, arr);
     Print(arr);
