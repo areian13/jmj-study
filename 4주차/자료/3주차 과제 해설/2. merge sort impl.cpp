@@ -32,7 +32,7 @@ void Merge(int start, int mid, int end, vector<int>& arr, bool order)
         arr[i] = temp[i - start];
 }
 
-void MergeSort(int start, int end, vector<int>& arr, bool order = 0)
+void MergeSort(int start, int end, vector<int>& arr, bool order = false)
 {
     if (start == end)
         return;
