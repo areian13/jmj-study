@@ -11,15 +11,14 @@ int Z(int k, int r, int c)
         return 0;
 
     k /= 2;
-    int p = k * k;
 
     if (r < k && c < k)
         return Z(k, r, c);
     if (r < k && c >= k)
-        return Z(k, r, c - k) + p * 1;
+        return Z(k, r, c - k) + k * k * 1;
     if (r >= k && c < k)
-        return Z(k, r - k, c) + p * 2;
-    return Z(k, r - k, c - k) + p * 3;
+        return Z(k, r - k, c) + k * k * 2;
+    return Z(k, r - k, c - k) + k * k * 3;
 }
 
 int main()
