@@ -37,26 +37,15 @@ public class Main {
         int secondIndex = midIndex + 1;
 
         while (firstIndex <= midIndex && secondIndex <= endIndex) {
-            if (isAsc) {
-                if (arr[firstIndex] <= arr[secondIndex]) {
-                    temp[tempIndex] = arr[firstIndex];
-                    firstIndex++;
-                } else {
-                    temp[tempIndex] = arr[secondIndex];
-                    secondIndex++;
-                }
-                tempIndex++;
-            } else {
-                if (arr[firstIndex] <= arr[secondIndex]) {
-                    temp[tempIndex] = arr[secondIndex];
-                    secondIndex++;
-                } else {
-                    temp[tempIndex] = arr[firstIndex];
-                    firstIndex++;
-                }
-                tempIndex++;
+            if (isAsc ^ (arr[firstIndex] > arr[secondIndex])) {
+                temp[tempIndex] = arr[firstIndex];
+                firstIndex++;
             }
-
+            else {
+                temp[tempIndex] = arr[secondIndex];
+                secondIndex++;
+            }
+            tempIndex++;
         }
 
         int start = firstIndex <= midIndex ? firstIndex : secondIndex;
