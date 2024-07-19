@@ -11,17 +11,9 @@ int Z(int k, int r, int c)
         return 0;
 
     k /= 2;
-    int p = 0;
-    if (c >= k)
-    {
-        p += 1;
-        c -= k;
-    }
-    if (r >= k)
-    {
-        p += 2;
-        r -= k;
-    }
+    int p = (r >= k) * 2 + (c >= k);
+    r %= k;
+    c %= k;
     return Z(k, r, c) + k * k * p;
 }
 
