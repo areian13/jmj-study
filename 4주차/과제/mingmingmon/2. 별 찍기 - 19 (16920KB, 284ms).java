@@ -3,29 +3,32 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
+
 // S4_10994
 public class Main {
-    static void drawStar (int start, int l, char[][] arr) {
-        if (start > l)
+    static void drawStar (int start, int end, char[][] arr) {
+        if (start > end)
             return;
 
-        for (int i = start; i < l + 1; i++) {
-            for (int j = start; j < l + 1; j++) {
-                if (i == start || i == l || j == start || j == l)
-                    arr[i][j] = '*';
-                else
-                    arr[i][j] = ' ';
-            }
+        for (int i = start; i <= end; i++) {
+            arr[start][i] = '*';
+            arr[end][i] = '*';
+            arr[i][start] = '*';
+            arr[i][end] = '*';
         }
-        drawStar(start + 2, l - 2, arr);
+        drawStar(start + 2, end - 2, arr);
     }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int l = 4 * (n - 1);
-        char[][] arr = new char[l + 1][l + 1];
+        int size = 4 * (n - 1) + 1;
+        char[][] arr = new char[size][size];
+        for(char[] rows : arr) {
+            Arrays.fill(rows, ' ');
+        }
 
-        drawStar(0, l, arr);
+        drawStar(0, size - 1, arr);
 
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 

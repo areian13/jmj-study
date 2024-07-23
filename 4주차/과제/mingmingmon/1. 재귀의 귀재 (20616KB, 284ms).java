@@ -5,15 +5,18 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 // B2_25501
 public class Main {
-    static int cnt;
 
-    static int isPalindrome(String line, int start, int end) {
-        if (start >= end)
-            return 1;
-        if (line.charAt(start) != line.charAt(end))
-            return 0;
-        cnt++;
-        return isPalindrome(line, start + 1, end - 1);
+    static void isPalindrome(String line, int start, int end, int[] arr) {
+        arr[1]++;
+        if (start >= end) {
+            arr[0] = 1;
+            return;
+        }
+        if (line.charAt(start) != line.charAt(end)) {
+            arr[0] = 0;
+            return;
+        }
+        isPalindrome(line, start + 1, end - 1, arr);
     }
 
     public static void main(String[] args) throws IOException {
@@ -22,10 +25,11 @@ public class Main {
 
         int n = Integer.parseInt(br.readLine());
         for (int i = 0; i < n; i++) {
+            int[] arr = new int[2];
             String line = br.readLine();
-            int length = line.length() - 1;
-            cnt = 1;
-            bw.write(isPalindrome(line, 0, length) + " " + cnt + "\n");
+            int end = line.length() - 1;
+            isPalindrome(line, 0, end, arr);
+            bw.write(arr[0] + " " + arr[1] + "\n");
         }
 
         bw.flush();
