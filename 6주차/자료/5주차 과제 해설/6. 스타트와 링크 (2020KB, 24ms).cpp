@@ -8,23 +8,17 @@
 
 using namespace std;
 
-int BT(int p, vector<bool>& isSelected, vector<int>& start, vector<vector<int>>& s)
+int BT(int p, vector<int>& start, vector<int>& link, vector<vector<int>>& s)
 {
     int n = s.size();
     int k = start.size();
+    int l = link.size();
 
-    if (p >= n)
+    if (k > n / 2 || l > n / 2)
         return INT_MAX;
 
-    if (k == n / 2)
+    if (k == n / 2 && l == n / 2)
     {
-        vector<int> link;
-        for (int i = 0; i < n; i++)
-        {
-            if (!isSelected[i])
-                link.push_back(i);
-        }
-
         int result = 0;
         for (int i = 0; i < k; i++)
         {
@@ -37,23 +31,23 @@ int BT(int p, vector<bool>& isSelected, vector<int>& start, vector<vector<int>>&
         return abs(result);
     }
 
-    int result = BT(p + 1, isSelected, start, s);
-    isSelected[p] = true;
     start.push_back(p);
-    result = min(result, BT(p + 1, isSelected, start, s));
+    int pickStart = BT(p + 1, start, link, s);
     start.pop_back();
-    isSelected[p] = false;
 
-    return result;
+    link.push_back(p);
+    int pickLink = BT(p + 1, start, link, s);
+    link.pop_back();
+
+    return min(pickStart, pickLink);
 }
 
 int MinDiff(vector<vector<int>>& s)
 {
     int n = s.size();
 
-    vector<bool> isSelected(n, false);
-    vector<int> start;
-    return BT(0, isSelected, start, s);
+    vector<int> start, link;
+    return BT(0, start, link, s);
 }
 
 int main()
