@@ -7,16 +7,16 @@ import java.util.StringTokenizer;
 //S1_1189
 public class Main {
 
-    static int result;
     static int[] dirRow = {-1, 0, 1, 0};
     static int[] dirCol = {0, 1, 0, -1};
 
-    static void countRoadToHome(int currRow, int currCol, int cnt, boolean[][] isVisited, int r, int c, int k, char[][] map) {
+    static int countRoadToHome(int currRow, int currCol, int cnt, boolean[][] isVisited, int r, int c, int k, char[][] map) {
+        int result = 0;
         if (currRow == 0 && currCol == c - 1) {
             if (cnt == k) {
                 result++;
-                return;
             }
+            return result;
         }
 
         for (int i = 0; i < 4; i++) {
@@ -29,9 +29,11 @@ public class Main {
             if (map[nextRow][nextCol] == 'T')
                 continue;
             isVisited[nextRow][nextCol] = true;
-            countRoadToHome(nextRow, nextCol, cnt + 1, isVisited, r, c, k, map);
+            result += countRoadToHome(nextRow, nextCol, cnt + 1, isVisited, r, c, k, map);
             isVisited[nextRow][nextCol] = false;
         }
+
+        return result;
     }
 
     public static void main(String[] args) throws IOException {
@@ -52,7 +54,7 @@ public class Main {
 
         boolean[][] isVisited = new boolean[r][c];
         isVisited[r - 1][0] = true;
-        countRoadToHome(r - 1, 0, 1, isVisited, r, c, k, map);
+        int result = countRoadToHome(r - 1, 0, 1, isVisited, r, c, k, map);
 
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 

@@ -20,29 +20,18 @@ O(2^n)
 // S2_1182
 public class Main {
 
-    static int result;
-
-    static void countSubsequence(int n, int s, int currIndex, boolean[] isSelected, int[] numbers) {
-        int sum = 0;
-        boolean isAdded = false;
-        for (int i = 0; i < n; i++) {
-            if (isSelected[i]) {
-                sum += numbers[i];
-                isAdded = true;
-            }
-        }
-        if (isAdded && sum == s) {
+    static int countSubsequence(int sum, int currIndex, int n, int s, int[] numbers) {
+        int result = 0;
+        if (sum + numbers[currIndex] == s)
             result++;
-        }
 
-        if (currIndex == n)
-            return;
+        if (currIndex == n- 1)
+            return result;
 
-        for (int i = currIndex; i < n; i++) {
-            isSelected[i] = true;
-            countSubsequence(n, s, i + 1, isSelected, numbers);
-            isSelected[i] = false;
-        }
+        result += countSubsequence(sum + numbers[currIndex], currIndex + 1, n, s, numbers);
+        result += countSubsequence(sum, currIndex + 1, n, s, numbers);
+
+        return result;
     }
 
     public static void main(String[] args) throws IOException {
@@ -58,8 +47,7 @@ public class Main {
             numbers[i] = Integer.parseInt(st.nextToken());
         }
 
-        boolean[] isSelected = new boolean[n];
-        countSubsequence(n, s, 0, isSelected, numbers);
+        int result = countSubsequence(0, 0, n, s, numbers);
 
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
