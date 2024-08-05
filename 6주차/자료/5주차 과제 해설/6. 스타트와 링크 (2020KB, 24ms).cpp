@@ -44,8 +44,6 @@ int BT(int p, vector<int>& start, vector<int>& link, vector<vector<int>>& s)
 
 int MinDiff(vector<vector<int>>& s)
 {
-    int n = s.size();
-
     vector<int> start, link;
     return BT(0, start, link, s);
 }
