@@ -9,11 +9,11 @@ void FW(vector<vector<bool>>& graph)
 {
     int n = graph.size();
 
-    for (int j = 0; j < n; j++)
+    for (int k = 0; k < n; k++)
     {
         for (int i = 0; i < n; i++)
         {
-            for (int k = 0; k < n; k++)
+            for (int j = 0; j < n; j++)
                 graph[i][j] = graph[i][j] || (graph[i][k] && graph[k][j]);
         }
     }
